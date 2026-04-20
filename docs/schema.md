@@ -1,0 +1,31 @@
+# Database Schema
+
+- Teams
+    - team_id INTEGER PRIMARY KEY
+    - team_name VARCHAR NOT NULL
+    - city VARCHAR NOT NULL
+- Players
+    - player_id INTEGER PRIMARY KEY
+    - team_id INTEGER FK: Teams.team_id NOT NULL
+    - player_name VARCHAR NOT NULL
+    - batting_average NUMERIC
+    - strikeout_rate NUMERIC
+    - position VARCHAR
+- Games
+    - game_id INTEGER PRIMARY KEY
+    - season_id INTEGER FK: Seasons.season_id NOT NULL
+    - home_team INTEFER FK: Teams.team_id NOT NULL
+    - away_team INTEGER FK: Teams.team_id NOT NULL
+    - date DATE NOT NULL
+- Pitches
+    - pitch_id INTEGER PRIMARY KEY
+    - game_id INTEGER FK: Games.game_id
+    - type VARCHAR (FF, SL, CT, CU, etc)
+    - speed NUMERIC
+    - spin_rate NUMERIC
+    - pitcher_id INTEGER FK: Players.player_id
+    - batter_id INTEGER FK: Players.player_id
+    - result VARCHAR (hit, strikeout, walk, hit_into_play, etc)
+- Seasons
+    - year INTEGER PRIMARY KEY
+    - winner INTEGER FK: Teams.team_id
