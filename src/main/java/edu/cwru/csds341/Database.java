@@ -40,12 +40,59 @@ public class Database {
             CREATE TABLE IF NOT EXISTS Teams(
             team_id INT PRIMARY KEY,
             team_name VARCHAR(100),
-            city Varchar(100));
+            city VARCHAR(100));
             """;
+        
+        String createSeasons = """
+            CREATE TABLE IF NOT EXISTS Seasons(
+            seasons_id INT PRIMARY KEY,
+            winner INT,
+            year INT,
+            FOREIGN KEY(winner) REFRENCES Teams(team_id));
+            """;
+        
+        String createPlayers = """
+            CREATE TABLE IF NOT EXISTS Players(
+            player_id INT PRIMARY KEY,
+            team_id INT,
+            player_name VARCHAR(100),
+            batting_average DECIMAL(4,3),
+            strikeout_rate DECIMAL(4,3),
+            position VARCHAR(100),
+            FOREIGN KEY(team_id) REFRENCES Teams(team_id));
+            """;
+        
+        String createGames = """
+            CREATE TABLE IF NOT EXISTS Games(
+            games_id INT PRIMARY KEY,
+            season_id INT,
+            home_team INT,
+            away_team INT,
+            date DATE,
+            FOREIGN KEY(season_id) REFRENCES Seasons(Season_id)
+            FOREIGN KEY(home_team) REFRENCES Teams(team_id)
+            FOREIGN KEY(away_team) REFRENCES Teams(team_id));
+            """;
+        
+        String create Pitches = """
+            CREATE TABLE IF NOT EXISTS Pitches(
+            pitches_id INT PRIMARY KEY,
+            games_id INT,
+            type VARCHAR(100),
+            speed DECIMAL(5,1),
+            spin_rate INT,
+            pitcher_ID INT,
+            result VARCHAR(100),
+            FOREIGN KEY(games_id) REFRENCES Games(games_id)
+            FOREIGN KEY(pitcher_id) REFRENCES Players(player_id)
+            FOREIGN KEY(batter_id) REFRENCES Players(player_id));
+            """;
+            
 
         //Insert all 30 mlb teams
-        INSERT INTO Teams(team_id, team_name, city) VALUES
-            (1, 'Diamondbacks', 'Arizona'),   
+        String insertTeams = """
+            INSERT INTO Teams(team_id, team_name, city) VALUES
+            (1, 'Diamondbacks', 'Arizona'),
             (2, 'Athletics', 'Oakland'), 
             (3, 'Braves', 'Atlanta'), 
             (4, 'Orioles', 'Baltimore'), 
@@ -75,10 +122,29 @@ public class Database {
             (28, 'Rangers', 'Texas'),
             (29, 'Blue Jays', 'Toronto'), 
             (30, 'Nationals', 'Washington'), 
-    
-            
-            
+        """; 
 
+
+        //Insert seasons
+        String insertSeasons = """
+            INSERT INTO Seasons(season_id, winner, year) VALUES
+            """;
+
+
+        //Insert player info
+        String insertPlayers = """
+            INSERT INTO Players(player_id, team_id, player_name, batting_average, strikeout_rate, position) VALUES
+            """;
+
+        //Insert games
+        String insertGames = """
+            INSERT INTO Games(games_id, season_id, home_team, away_team, date) VALUES
+            """;
+
+        //Insert Pitches
+        String insertPitches = """
+            INSERT INTO Pitches(pitches_id, games_id, type, speed, spin_rate, pitcher_id, batter_id, result) VALUES
+            """;
     }
 
     public static void close() {
