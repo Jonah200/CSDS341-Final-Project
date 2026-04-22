@@ -134,4 +134,4 @@ INSERT INTO pitches VALUES (5,  5, 'SL', 91.0, 2235.5, 47, 42,  'ball');
 INSERT INTO pitches VALUES (6,  5, 'FF', 85.6, 2339.0, 47, 42,  'swinging_strike');
 INSERT INTO pitches VALUES (7,  5, 'FS', 85.2, 1520.0, 47, 8,   'hit_into_play');
 INSERT INTO pitches VALUES (8,  5, 'FS', 84.6, 1574.0, 47, 7,   'foul');
-INSERT INTO pitches VALUES (9,  5, 'SL', 84.8, 2262.0, 47, 7,   'ball');
+INSERT INTO pitches VALUES (9,  5, 'SL', 84.8, 2262.0, 47, 7,   'ball'); 
