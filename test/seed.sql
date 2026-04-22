@@ -1,36 +1,43 @@
 -- Teams
-INSERT INTO teams VALUES (1, 'Knights',  'New York');
-INSERT INTO teams VALUES (2, 'Rebels',   'Boston');
-INSERT INTO teams VALUES (3, 'Storm',    'Chicago');
-INSERT INTO teams VALUES (4, 'Stars',    'Los Angeles');
+INSERT INTO teams VALUES (1, 'Dodgers',  'Los Angeles');
+INSERT INTO teams VALUES (2, 'Padres',   'San Diego');
+INSERT INTO teams VALUES (3, 'Diamondbacks', 'Arizona ');
+INSERT INTO teams VALUES (4, 'Giants',    'San Francisco');
+INSERT INTO teams VALUES (5, 'Rockies',  'Colorado');
 
--- Seasons (2023 won by Boston; 2024 in progress)
-INSERT INTO seasons VALUES (2023, 2);
-INSERT INTO seasons VALUES (2024, NULL);
+-- Seasons (2024 and 2025 won by LA Dodgers)
+INSERT INTO seasons VALUES (2024, 1);
+INSERT INTO seasons VALUES (2025, 1);
 
--- Players — New York Knights
-INSERT INTO players VALUES (1,  1, 'Marcus Hale',    0.291, 0.198, 'SP');
-INSERT INTO players VALUES (2,  1, 'Derek Rowe',     0.268, 0.221, 'RP');
-INSERT INTO players VALUES (3,  1, 'Carlos Vega',    0.312, 0.175, '1B');
-INSERT INTO players VALUES (4,  1, 'Tony Marsh',     0.244, 0.260, 'CF');
+-- Players — LA Dodgers
+INSERT INTO players VALUES (1,  1, 'Freddie Freeman', 0.295, 0.204, '1B');
+INSERT INTO players VALUES (2,  1, 'Teoscar Hernandez',0.247, 0.245, 'RF');
+INSERT INTO players VALUES (3,  1, 'Mookie Betts',    0.258, 0.103, 'SS');
+INSERT INTO players VALUES (4,  1, 'Shohei Ohtani',     0.282, 0.257, 'TWP');
 
--- Players — Boston Rebels
-INSERT INTO players VALUES (5,  2, 'Owen Pierce',    0.330, 0.145, 'SP');
-INSERT INTO players VALUES (6,  2, 'Liam Nguyen',    0.278, 0.233, 'RP');
-INSERT INTO players VALUES (7,  2, 'Sam Doyle',      0.299, 0.190, '3B');
-INSERT INTO players VALUES (8,  2, 'Eric Tanner',    0.255, 0.275, 'RF');
+-- Players — San Diego Padres
+INSERT INTO players VALUES (5,  2, 'Manny Machado',   0.330, 0.193, 'SP');
+INSERT INTO players VALUES (6,  2, 'Xander Bogaerts',  0.275, 0.170, 'RP');
+INSERT INTO players VALUES (7,  2, 'Jake Cronenworth',  0.263, 0.208, '3B');
+INSERT INTO players VALUES (8,  2, 'Luis Arraez',    0.246, 0.031, 'RF');
 
--- Players — Chicago Storm
-INSERT INTO players VALUES (9,  3, 'Jake Fuller',    0.241, 0.310, 'SP');
-INSERT INTO players VALUES (10, 3, 'Ray Kimura',     0.275, 0.205, 'RP');
-INSERT INTO players VALUES (11, 3, 'Andre Brooks',   0.308, 0.160, 'SS');
-INSERT INTO players VALUES (12, 3, 'Pete Larson',    0.233, 0.290, 'LF');
+-- Players — Arizona Diamondbacks
+INSERT INTO players VALUES (9,  3, 'Geraldo Perdomo', 0.290, 0.176, 'SS');
+INSERT INTO players VALUES (10, 3, 'Josh Naylor',     0.292, 0.124, '1B');
+INSERT INTO players VALUES (11, 3, 'Ketel Marte',     0.281, 0.149, '2B');
+INSERT INTO players VALUES (12, 3, 'Corbin Carroll',  0.243, 0.224, 'CF');
 
--- Players — Los Angeles Stars
-INSERT INTO players VALUES (13, 4, 'Diego Reyes',    0.318, 0.170, 'SP');
-INSERT INTO players VALUES (14, 4, 'Noah Castillo',  0.265, 0.245, 'RP');
-INSERT INTO players VALUES (15, 4, 'Will Santos',    0.295, 0.185, '2B');
-INSERT INTO players VALUES (16, 4, 'Finn Harper',    0.248, 0.268, 'C');
+-- Players — San Francisco Giants
+INSERT INTO players VALUES (13, 4, 'Dominic Smith',   0.284, 0.187, '1B');
+INSERT INTO players VALUES (14, 4, 'Jung Hoo Lee',    0.271, 0.162, 'CF');
+INSERT INTO players VALUES (15, 4, 'Willy Adames',    0.263, 0.221, 'SS');
+INSERT INTO players VALUES (16, 4, 'Matt Chapman',    0.241, 0.233, '3B');
+
+-- Players — Colorado Rockies
+INSERT INTO players VALUES (17, 5, 'Tyler Freeman',   0.281, 0.119, 'RF');
+INSERT INTO players VALUES (18, 5, 'Hunter Goodman',  0.261, 0.253, 'C');
+INSERT INTO players VALUES (19, 5, 'Ryan McMahon',    0.243, 0.248, '3B');
+INSERT INTO players VALUES (20, 5, 'Ezequiel Tovar',  0.238, 0.212, 'SS');
 
 -- Games
 INSERT INTO games VALUES (1, 2023, 2, 1, '2023-07-15'); -- Boston (home) vs New York
