@@ -1,5 +1,5 @@
 -- Teams
-INSERT INTO teams VALUES (1,  'Diamondbacks', 'Arizona'); -- 3
+INSERT INTO teams VALUES (1,  'Diamondbacks', 'Arizona');
 INSERT INTO teams VALUES (2,  'Athletics',    'Oakland');
 INSERT INTO teams VALUES (3,  'Braves',       'Atlanta');
 INSERT INTO teams VALUES (4,  'Orioles',      'Baltimore');
@@ -8,12 +8,12 @@ INSERT INTO teams VALUES (6,  'Cubs',         'Chicago');
 INSERT INTO teams VALUES (7,  'White Sox',    'Chicago'); 
 INSERT INTO teams VALUES (8,  'Reds',         'Cincinnati'); 
 INSERT INTO teams VALUES (9,  'Guardians',    'Cleveland'); 
-INSERT INTO teams VALUES (10, 'Rockies',      'Colorado'); -- 5
+INSERT INTO teams VALUES (10, 'Rockies',      'Colorado');
 INSERT INTO teams VALUES (11, 'Tigers',       'Detroit');
 INSERT INTO teams VALUES (12, 'Astros',       'Houston');
 INSERT INTO teams VALUES (13, 'Royals',       'Kansas City'); 
 INSERT INTO teams VALUES (14, 'Angels',       'Los Angeles'); 
-INSERT INTO teams VALUES (15, 'Dodgers',      'Los Angeles'); --H 1
+INSERT INTO teams VALUES (15, 'Dodgers',      'Los Angeles'); 
 INSERT INTO teams VALUES (16, 'Marlins',      'Miami');
 INSERT INTO teams VALUES (17, 'Brewers',      'Milwaukee'); 
 INSERT INTO teams VALUES (18, 'Twins',        'Minnesota'); 
@@ -21,8 +21,8 @@ INSERT INTO teams VALUES (19, 'Mets',         'New York');
 INSERT INTO teams VALUES (20, 'Yankees',      'New York'); 
 INSERT INTO teams VALUES (21, 'Phillies',     'Philadelphia'); 
 INSERT INTO teams VALUES (22, 'Pirates',      'Pittsburgh');
-INSERT INTO teams VALUES (23, 'Padres',       'San Diego'); -- 2
-INSERT INTO teams VALUES (24, 'Giants',       'San Francisco'); -- 4
+INSERT INTO teams VALUES (23, 'Padres',       'San Diego');
+INSERT INTO teams VALUES (24, 'Giants',       'San Francisco'); 
 INSERT INTO teams VALUES (25, 'Mariners',     'Seattle');
 INSERT INTO teams VALUES (26, 'Cardinals',    'St. Louis'); 
 INSERT INTO teams VALUES (27, 'Rays',         'Tampa Bay');
@@ -123,10 +123,10 @@ INSERT INTO players VALUES (52, 20, 'Anthony Volpe',   0.231, 0.252, 'SS');
 INSERT INTO players VALUES (53, 20, 'Carlos Rodón',    0.000, 0.249, 'SP');
 
 -- Players — San Diego Padres
-INSERT INTO players VALUES (54,  23, 'Manny Machado',   0.330, 0.193, 'SP');
-INSERT INTO players VALUES (55,  23, 'Xander Bogaerts',  0.275, 0.170, 'RP');
+INSERT INTO players VALUES (54,  23, 'Manny Machado',     0.330, 0.193, 'SP');
+INSERT INTO players VALUES (55,  23, 'Xander Bogaerts',   0.275, 0.170, 'RP');
 INSERT INTO players VALUES (56,  23, 'Jake Cronenworth',  0.263, 0.208, '3B');
-INSERT INTO players VALUES (57,  23, 'Luis Arraez',    0.246, 0.031, 'RF');
+INSERT INTO players VALUES (57,  23, 'Luis Arraez',       0.246, 0.031, 'RF');
 
 -- Players — San Francisco Giants 
 INSERT INTO players VALUES (58, 24, 'Dominic Smith',   0.284, 0.187, '1B');
@@ -147,11 +147,11 @@ INSERT INTO players VALUES (67, 29, 'Kevin Gausman',   0.000, 0.310, 'SP');
 -- Games 
 INSERT INTO games VALUES (1, 2021, 12, 21, '2021-10-26'); -- Houston(home) vs Philadelphia
 INSERT INTO games VALUES (2, 2022, 12, 21, '2022-10-28'); -- Houston(home) vs Philadelphia
-INSERT INTO games VALUES (3, 2023, 5,  20, '2023-07-15'); -- Boston (home) vs New York h
-INSERT INTO games VALUES (4, 2023, 6,  15, '2023-09-02'); -- Chicago (home) vs Los Angeles h
+INSERT INTO games VALUES (3, 2023, 5,  20, '2023-07-15'); -- Boston (home) vs New York 
+INSERT INTO games VALUES (4, 2023, 6,  15, '2023-09-02'); -- Chicago (home) vs Los Angeles 
 INSERT INTO games VALUES (5, 2023, 28, 1,  '2023-10-27'); -- Texas(home) vs Arizona
-INSERT INTO games VALUES (6, 2024, 20, 2,  '2024-04-05'); -- New York (home) vs Boston h
-INSERT INTO games VALUES (7, 2024, 15, 3,  '2024-04-06'); -- Los Angeles (home) vs Chicago h
+INSERT INTO games VALUES (6, 2024, 20, 2,  '2024-04-05'); -- New York (home) vs Boston 
+INSERT INTO games VALUES (7, 2024, 15, 3,  '2024-04-06'); -- Los Angeles (home) vs Chicago 
 INSERT INTO games VALUES (8, 2024, 15, 20, '2024-10-25'); -- Los Angeles(home) vs New York 
 INSERT INTO games VALUES (9, 2025, 15, 29, '2025-10-24'); -- Los Angeles(home) vs Toronto
 
