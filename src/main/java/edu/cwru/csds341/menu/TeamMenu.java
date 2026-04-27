@@ -14,9 +14,10 @@ public class TeamMenu extends BaseMenu {
     @Override
     protected Map<String, Runnable> menuItems() {
         Map<String, Runnable> items = new LinkedHashMap<>();
-        items.put("List all teams", this::listTeams);
-        items.put("Add team",       this::addTeam);
-        items.put("Update team",    this::updateTeam);
+        items.put("List all teams",            this::listTeams);
+        items.put("Team batting averages",     this::teamBattingAverages);
+        items.put("Add team",                  this::addTeam);
+        items.put("Update team",               this::updateTeam);
         return items;
     }
 
@@ -36,6 +37,40 @@ public class TeamMenu extends BaseMenu {
                         rs.getString("city"));
             }
             if (!any) System.out.println("No teams found.");
+        } catch (SQLException e) {
+            System.err.println("DB error: " + e.getMessage());
+        }
+    }
+
+    private void teamBattingAverages() {
+        String sql = """
+                SELECT t.team_name, t.city,
+                       AVG(p.batting_average) AS team_avg,
+                       COUNT(p.player_id)     AS players
+                FROM teams t
+                JOIN players p ON p.team_id = t.team_id
+                WHERE p.batting_average IS NOT NULL
+                GROUP BY t.team_id, t.team_name, t.city
+                ORDER BY team_avg DESC
+                """;
+        try (Connection conn = Database.getConnection();
+             Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+            System.out.printf("%n%-4s %-28s %-20s %-10s %-7s%n",
+                    "#", "Team", "City", "Avg BA", "Players");
+            separator(71);
+            int rank = 1;
+            boolean any = false;
+            while (rs.next()) {
+                any = true;
+                System.out.printf("%-4d %-28s %-20s %-10.3f %-7d%n",
+                        rank++,
+                        rs.getString("team_name"),
+                        rs.getString("city"),
+                        rs.getDouble("team_avg"),
+                        rs.getInt("players"));
+            }
+            if (!any) System.out.println("No player batting data found.");
         } catch (SQLException e) {
             System.err.println("DB error: " + e.getMessage());
         }
