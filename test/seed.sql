@@ -123,7 +123,7 @@ INSERT INTO players VALUES (52, 20, 'Anthony Volpe',   0.231, 0.252, 'SS');
 INSERT INTO players VALUES (53, 20, 'Carlos Rodón',    0.000, 0.249, 'SP');
 
 -- Players — San Diego Padres
-INSERT INTO players VALUES (54,  23, 'Manny Machado',     0.330, 0.193, 'SP');
+INSERT INTO players VALUES (54,  23, 'Manny Machado',     0.330, 0.193, '3B');
 INSERT INTO players VALUES (55,  23, 'Xander Bogaerts',   0.275, 0.170, 'RP');
 INSERT INTO players VALUES (56,  23, 'Jake Cronenworth',  0.263, 0.208, '3B');
 INSERT INTO players VALUES (57,  23, 'Luis Arraez',       0.246, 0.031, 'RF');
@@ -454,7 +454,7 @@ INSERT INTO games VALUES (35, 2025, 6,  19, '2025-06-21'); -- Chicago Cubs(home)
 INSERT INTO games VALUES (36, 2025, 27, 12, '2025-07-14'); -- Tampa Bay(home)  vs Houston
 INSERT INTO games VALUES (37, 2025, 3,  20, '2025-08-03'); -- Atlanta(home)    vs NY Yankees
 INSERT INTO games VALUES (38, 2025, 25, 15, '2025-09-06'); -- Seattle(home)    vs LA Dodgers
-INSERT INTO games VALUES (39, 2025, 23, 50, '2025-09-19'); -- San Diego(home)  vs Shohei Ohtani's team
+INSERT INTO games VALUES (39, 2025, 23, 15, '2025-09-19'); -- San Diego(home)  vs Shohei Ohtani's team
  
 -- 2026 Season (in progress)
 INSERT INTO games VALUES (40, 2026, 15, 20, '2026-04-01'); -- LA Dodgers(home) vs NY Yankees

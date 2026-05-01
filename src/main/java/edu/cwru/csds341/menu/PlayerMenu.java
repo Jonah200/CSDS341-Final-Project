@@ -23,25 +23,20 @@ public class PlayerMenu extends BaseMenu {
     }
 
     private void listPlayers() {
-        String teamInput = prompt("Filter by team ID (blank = all teams)");
-        boolean filterByTeam = !teamInput.isEmpty();
-        Integer teamId = null;
-        if (filterByTeam) {
-            try { teamId = Integer.parseInt(teamInput); }
-            catch (NumberFormatException e) { System.out.println("Invalid team ID."); return; }
-        }
+        String teamName = prompt("Filter by team name (partial match, blank = all)");
+        boolean filterByTeam = !teamName.isEmpty();
 
         String sql = """
                 SELECT p.player_id, p.player_name, p.position, p.batting_average,
                        p.strikeout_rate, t.team_name
                 FROM players p
                 JOIN teams t ON p.team_id = t.team_id
-                """ + (filterByTeam ? "WHERE p.team_id = ? " : "") +
+                """ + (filterByTeam ? "WHERE t.team_name ILIKE ? " : "") +
                 "ORDER BY t.team_name, p.player_name";
 
         try (Connection conn = Database.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            if (filterByTeam) ps.setInt(1, teamId);
+            if (filterByTeam) ps.setString(1, "%" + teamName + "%");
             ResultSet rs = ps.executeQuery();
             System.out.printf("%n%-6s %-25s %-10s %-8s %-10s %-20s%n",
                     "ID", "Name", "Position", "Avg", "K-Rate", "Team");
@@ -64,51 +59,51 @@ public class PlayerMenu extends BaseMenu {
     }
 
     private void bestBattingAverage() {
-        String teamInput = prompt("Filter by team ID (blank = all teams)");
-        boolean filterByTeam = !teamInput.isEmpty();
-        Integer teamId = null;
-        if (filterByTeam) {
-            try { teamId = Integer.parseInt(teamInput); }
-            catch (NumberFormatException e) { System.out.println("Invalid team ID."); return; }
-        }
+        String teamName = prompt("Filter by team name (partial match, blank = all)");
+        String position = prompt("Filter by position (e.g. SP, 2B, CF — blank = all)");
 
         String sql = """
                 SELECT p.player_name, p.batting_average, p.position, t.team_name
                 FROM players p
                 JOIN teams t ON p.team_id = t.team_id
                 WHERE p.batting_average IS NOT NULL
-                """ + (filterByTeam ? "AND p.team_id = ? " : "") +
+                """ + teamClause(teamName) + positionClause(position) +
                 "ORDER BY p.batting_average DESC LIMIT 10";
 
         System.out.println("\nTop 10 by batting average:");
-        runRankingQuery(sql, filterByTeam ? teamId : null, "batting_average");
+        runRankingQuery(sql, teamName, position, "batting_average");
     }
 
     private void bestStrikeoutRate() {
-        String teamInput = prompt("Filter by team ID (blank = all teams)");
-        boolean filterByTeam = !teamInput.isEmpty();
-        Integer teamId = null;
-        if (filterByTeam) {
-            try { teamId = Integer.parseInt(teamInput); }
-            catch (NumberFormatException e) { System.out.println("Invalid team ID."); return; }
-        }
+        String teamName = prompt("Filter by team name (partial match, blank = all)");
+        String position = prompt("Filter by position (e.g. SP, 2B, CF — blank = all)");
 
         String sql = """
                 SELECT p.player_name, p.strikeout_rate AS batting_average, p.position, t.team_name
                 FROM players p
                 JOIN teams t ON p.team_id = t.team_id
                 WHERE p.strikeout_rate IS NOT NULL
-                """ + (filterByTeam ? "AND p.team_id = ? " : "") +
-                "ORDER BY p.strikeout_rate DESC LIMIT 10";
+                """ + teamClause(teamName) + positionClause(position) +
+                "ORDER BY p.strikeout_rate LIMIT 10";
 
         System.out.println("\nTop 10 by strikeout rate:");
-        runRankingQuery(sql, filterByTeam ? teamId : null, "batting_average");
+        runRankingQuery(sql, teamName, position, "batting_average");
     }
 
-    private void runRankingQuery(String sql, Integer teamId, String metricCol) {
+    private static String teamClause(String teamName) {
+        return teamName.isEmpty() ? "" : "AND t.team_name ILIKE ? ";
+    }
+
+    private static String positionClause(String position) {
+        return position.isEmpty() ? "" : "AND p.position ILIKE ? ";
+    }
+
+    private void runRankingQuery(String sql, String teamName, String position, String metricCol) {
         try (Connection conn = Database.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            if (teamId != null) ps.setInt(1, teamId);
+            int i = 1;
+            if (!teamName.isEmpty()) ps.setString(i++, "%" + teamName + "%");
+            if (!position.isEmpty()) ps.setString(i,   "%" + position + "%");
             ResultSet rs = ps.executeQuery();
             System.out.printf("%-4s %-25s %-10s %-10s %-20s%n",
                     "#", "Name", "Value", "Position", "Team");

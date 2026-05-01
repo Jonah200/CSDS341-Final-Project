@@ -15,6 +15,7 @@ public class TeamMenu extends BaseMenu {
     protected Map<String, Runnable> menuItems() {
         Map<String, Runnable> items = new LinkedHashMap<>();
         items.put("List all teams",            this::listTeams);
+        items.put("Search teams by name",      this::searchByName);
         items.put("Team batting averages",     this::teamBattingAverages);
         items.put("Add team",                  this::addTeam);
         items.put("Update team",               this::updateTeam);
@@ -37,6 +38,30 @@ public class TeamMenu extends BaseMenu {
                         rs.getString("city"));
             }
             if (!any) System.out.println("No teams found.");
+        } catch (SQLException e) {
+            System.err.println("DB error: " + e.getMessage());
+        }
+    }
+
+    private void searchByName() {
+        String query = prompt("Team name (partial match)");
+        if (query.isEmpty()) { System.out.println("Enter at least part of a name."); return; }
+        String sql = "SELECT team_id, team_name, city FROM teams WHERE team_name ILIKE ? ORDER BY team_name";
+        try (Connection conn = Database.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, "%" + query + "%");
+            ResultSet rs = ps.executeQuery();
+            System.out.printf("%n%-6s %-28s %-20s%n", "ID", "Team Name", "City");
+            separator(56);
+            boolean any = false;
+            while (rs.next()) {
+                any = true;
+                System.out.printf("%-6d %-28s %-20s%n",
+                        rs.getInt("team_id"),
+                        rs.getString("team_name"),
+                        rs.getString("city"));
+            }
+            if (!any) System.out.println("No teams matched \"" + query + "\".");
         } catch (SQLException e) {
             System.err.println("DB error: " + e.getMessage());
         }

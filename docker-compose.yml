@@ -7,6 +7,8 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: mlb_pitching
       PGDATA: /var/lib/postgresql/18/docker
+      POSTGRES_HOST_AUTH_METHOD: md5
+      POSTGRES_INITDB_ARGS: "--auth-host=md5"
     ports:
       - "5432:5432"
     volumes:
